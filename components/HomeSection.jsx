@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { merakiFont } from "../app/ui/fonts";
 
 const slides = [
   {
@@ -92,7 +93,7 @@ const HomeSection = () => {
         <p className="text-xl sm:text-2xl md:text-3xl text-orange-200 font-medium tracking-widest uppercase drop-shadow-md">
           {slides[current].heading}
         </p>
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-orange-500 italic font-[Playfair_Display] drop-shadow-xl">
+        <h1 className={ ` ${merakiFont.className } font-bold text-5xl sm:text-6xl md:text-8xl text-orange-500 drop-shadow-xl`}>
           Meraki
         </h1>
         <p className="text-base sm:text-lg md:text-xl max-w-xl text-orange-100/90 px-4 leading-relaxed">

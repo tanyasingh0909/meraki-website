@@ -57,7 +57,7 @@ const EventsSection = () => {
   return (
     <section id="events" className="bg-black py-16 px-6 text-orange-100">
       <div className="max-w-6xl mx-auto text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold text-orange-400 mb-2">
+        <h2 className="text-4xl md:text-5xl font-serif font-bold text-orange-400 mb-2">
           Past Events
         </h2>
         <p className="text-orange-200 text-lg">

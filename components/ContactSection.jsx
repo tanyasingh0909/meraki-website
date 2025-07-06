@@ -31,9 +31,9 @@ export default function ContactPage() {
   };
 
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-black text-orange-100 px-6 py-20">
+
+      
+      <main id="contact" className="min-h-screen bg-black text-orange-100 px-6 py-20">
         <div className="max-w-6xl mx-auto grid gap-12 md:grid-cols-2">
           {/* Left: Contact Info */}
           <div className="space-y-6">
@@ -86,6 +86,6 @@ export default function ContactPage() {
           </form>
         </div>
       </main>
-    </>
+    
   );
 }

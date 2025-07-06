@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { merakiFont } from '../app/ui/fonts';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -31,22 +32,27 @@ const Header = () => {
             />
           </div>
           <span className="text-xl font-bold text-transparent bg-gradient-to-r from-orange-400 via-orange-300 to-orange-200 bg-clip-text tracking-tight">
-            <span className="italic font-[Dancing_Script] text-orange-300">Meraki</span>, Culinary Arts Society
+            <span className={` ${merakiFont.className} italic  text-orange-300`}>Meraki</span>, Culinary Arts Society
           </span>
         </Link>
 
         {/* Desktop nav */}
+      
         <nav className="hidden md:flex gap-4">
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className="text-sm text-orange-100 hover:text-white transition uppercase tracking-wide"
+              className="group relative text-sm text-orange-100 uppercase tracking-wide transition"
             >
               {label}
+              {/* Animated underline */}
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-orange-400 to-orange-200 group-hover:w-full transition-all duration-300 ease-out"></span>
             </Link>
           ))}
         </nav>
+
+            
 
         {/* Mobile menu toggle */}
         <button
@@ -68,9 +74,10 @@ const Header = () => {
               key={href}
               href={href}
               onClick={() => setNavOpen(false)}
-              className="block py-3 text-orange-100 hover:text-white hover:bg-orange-800/30 rounded-md transition"
+              className="group block py-3 text-orange-100 hover:text-white transition relative"
             >
               {label}
+              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-gradient-to-r from-orange-400 to-orange-200 group-hover:w-full transition-all duration-300 ease-out"></span>
             </Link>
           ))}
         </div>
