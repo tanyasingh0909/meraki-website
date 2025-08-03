@@ -1,29 +1,33 @@
-import nodemailer from 'nodemailer';
+// app/api/contact/route.js
 
-export async function POST(request) {
-  const { name, email, subject, message } = await request.json();
+import nodemailer from "nodemailer";
 
-  const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT),
-    secure: process.env.SMTP_SECURE === 'true',
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
-
+export async function POST(req) {
   try {
-    await transporter.sendMail({
-      from: `"${name}" <${email}>`,
-      to: process.env.CONTACT_RECIPIENT || process.env.SMTP_USER,
-      subject: subject || 'New Contact Form Message',
-      text: message,
-      html: `<p>${message.replace(/\n/g, '<br>')}</p>`,
+    const { name, email, subject, message } = await req.json();
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
     });
-    return new Response(JSON.stringify({ ok: true }), { status: 200 });
+
+    const mailOptions = {
+      from: `"${name}" <${email}>`,
+      to: "tanyasingh090904@gmail.com",
+      subject: subject || "New Contact Form Message",
+      text: `From: ${name} <${email}>\n\n${message}`,
+    };
+
+    const info = await transporter.sendMail(mailOptions);
+
+    return new Response(JSON.stringify({ success: true }), {
+      status: 200,
+    });
   } catch (error) {
-    console.error('Mail send error:', error);
-    return new Response(JSON.stringify({ error: 'Failed to send email' }), { status: 500 });
+    console.error("❌ Email Error:", error);
+    return new Response("Internal Server Error", { status: 500 });
   }
 }
